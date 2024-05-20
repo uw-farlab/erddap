@@ -1,0 +1,27 @@
+# This docker file is currently just meant for local development use.
+#
+# Usage from project root:
+# docker build -f development/Dockerfile -t erddap-docker .
+# docker run -p 8080:8080 erddap-docker
+#
+# ERDDAP should then be available at http://localhost:8080/erddap
+
+# Set up build env.
+FROM maven:3.9.6-eclipse-temurin-17 AS build
+
+RUN mkdir /app/
+WORKDIR /app/
+
+# Temp dir required for a unit test.
+RUN mkdir /temp/
+
+# Copy in source files and build the war file.
+ADD development ./development
+ADD download ./download
+ADD images ./images
+ADD src ./src
+ADD WEB-INF ./WEB-INF
+COPY pom.xml .
+
+COPY ./development/docker/entrypoint.sh /
+ENTRYPOINT ["/entrypoint.sh"]
