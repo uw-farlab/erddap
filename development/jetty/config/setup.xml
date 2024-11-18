@@ -19,7 +19,7 @@ Subdirectories that will be created by ERDDAP are:
 The ERDDAP log file (log.txt) will be put in this directory.
 At ERD, we use '/u00/cwatch/erddap/' for releases.
 -->
-<bigParentDirectory>data</bigParentDirectory>
+<bigParentDirectory>target/data</bigParentDirectory>
 
 <!-- baseUrl is the start of the public url, to which "/erddap" 
 is appended. For example:
@@ -387,7 +387,8 @@ If an attribute is a global attribute, identify it by prefixing it with "global:
 -->
 <categoryAttributes>global:cdm_data_type, global:institution, ioos_category, global:keywords, long_name, standard_name, variableName</categoryAttributes>
 
-
-
+<useSharedWatchService>true</useSharedWatchService>
+<useSaxParser>true</useSaxParser>
+<usePrometheusMetrics>true</usePrometheusMetrics>
 </erddapSetup>
 

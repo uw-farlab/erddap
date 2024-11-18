@@ -2,13 +2,17 @@ package gov.noaa.pfel.coastwatch.sgt;
 
 import com.cohort.util.String2;
 import com.cohort.util.Test;
-
 import gov.noaa.pmel.sgt.dm.SGTLine;
+import org.junit.jupiter.api.BeforeAll;
+import testDataset.Initialization;
 
 class BoundariesTests {
-  /**
-   * This runs a unit test.
-   */
+  @BeforeAll
+  static void init() {
+    Initialization.edStatic();
+  }
+
+  /** This runs a unit test. */
   @org.junit.jupiter.api.Test
   void basicTest() throws Exception {
     // verbose = true;
@@ -53,8 +57,6 @@ class BoundariesTests {
     // test speed
     Test.ensureTrue(time < 20, "time=" + time);
 
-    String2.log(nationalBoundaries.statsString() + "\n" +
-        stateBoundaries.statsString());
-
+    String2.log(nationalBoundaries.statsString() + "\n" + stateBoundaries.statsString());
   }
 }
